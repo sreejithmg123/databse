@@ -16,6 +16,7 @@ class HomeController extends GetxController {
   RxString email = ''.obs;
   RxString phone = ''.obs;
   RxString image = ''.obs;
+  RxString website = ''.obs;
   ApiBaseHelper apiBaseHelper = ApiBaseHelper();
   @override
   void onInit() {
@@ -50,19 +51,19 @@ class HomeController extends GetxController {
     isLoading(true);
     for (int i = 0; i < employeeList.length; i++) {
       await DatabaseHelper.instance.add(Employee(
-        name: employeeList[i].name,
-        id: employeeList[i].id,
-        profileImage: employeeList[i].profileImage,
-        username: employeeList[i].username,
-        phone: employeeList[i].phone,
-        email: employeeList[i].email,
-      ));
+          name: employeeList[i].name,
+          id: employeeList[i].id,
+          profileImage: employeeList[i].profileImage,
+          username: employeeList[i].username,
+          phone: employeeList[i].phone,
+          email: employeeList[i].email,
+          website: employeeList[i].website));
     }
     employeeDBList = await fetchDatdb();
     isLoading(false);
   }
 
-  Future searchEmployees(String name) async {
+  Future<void> searchEmployees(String name) async {
     isLoading(true);
     employeeDBList = await DatabaseHelper.instance.searchEmployee(name);
     isLoading(false);
@@ -75,6 +76,7 @@ class HomeController extends GetxController {
     email.value = employee.email ?? '';
     image.value = employee.profileImage ??
         'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg';
+    website.value = employee.website ?? '';
     Get.to(DetailsViewView());
   }
 }

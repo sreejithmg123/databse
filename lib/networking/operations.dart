@@ -14,7 +14,6 @@ class ApiBaseHelper {
       if (response.statusCode == 200) {
         print(response.body);
 
-        var jsonData = jsonDecode(response.body);
         return employeeFromJson(response.body);
       }
     } on SocketException {

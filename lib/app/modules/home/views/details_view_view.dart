@@ -36,6 +36,10 @@ class DetailsViewView extends GetView<HomeController> {
             height: 10,
           ),
           returnData(title: 'Phone', value: controller.phone.value),
+          SizedBox(
+            height: 10,
+          ),
+          returnData(title: 'Website', value: controller.website.value),
         ],
       )),
     );
